@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "./libraries/Base64.sol";
 import "hardhat/console.sol";
 
-contract MyToken is ERC721, ERC721Burnable, AccessControl {
+contract MyNFT is ERC721, ERC721Burnable, AccessControl {
     using Counters for Counters.Counter;
 
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
