@@ -20,7 +20,156 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    color: rgb(235, 235, 235);
+    background: rgb(25, 25, 25);
   }
+}
+
+
+/* ELLIOT CSS :] */
+
+/* utilities */
+
+.dbox {
+  box-sizing: border-box;
+  border: 1px solid red;
+}
+
+.fwbox {
+  display: flex;
+  width: 100vw;
+}
+
+.mwbox {
+  display: flex;
+  width: 100vw;
+  max-width: 900px;
+  margin: auto;
+}
+
+.spacer5 {
+  width: 100%;
+  height: 5vh;
+}
+
+.nudge-smaller {
+  transform: scale(.92);
+}
+
+/* styles */
+
+/* reusable */
+
+
+.main-title {
+  font-size: 28px;
+  margin: auto;
+  text-align: center;
+}
+
+.text-section {
+  width: 45%;
+  margin: auto;
+  text-align: center;
+  font-size: 16px;
+  max-width: 450px;
+  color: rgb(185, 185, 185);
+}
+
+.text-section span {
+  color: rgb(181, 39, 181);
+}
+
+.sm-divider {
+  width: 100px;
+  border: .3px solid grey;
+  background-color: grey;
+  border-radius: 1px;
+  margin: auto;
+  margin-bottom: 1.5vh;
+}
+.med-divider {
+  width: 300px;
+  border: 1.1px solid grey;
+  background-color: grey;
+  border-radius: 2px;
+  margin: auto;
+}
+
+.img-row {
+  display: flex;
+  justify-content: center;
+}
+
+.gif {
+  width: 250px;
+  height: auto;
+  margin: 2vh 1vh 2vh 1vh;
+}
+
+/* header and navbar */
+
+.header-nav-bkgd {
+  background: linear-gradient(black, rgb(50, 50, 50));
+  padding-bottom: 1.5vh;
+}
+
+.header {
+  margin: auto;
+  margin-top: 1vh;
+  width: 150px;
+  text-align: center;
+  font-size: 21px;
+}
+
+.nav-button {
+  margin: auto;
+  margin-top: 1vh;
+  text-align: center;
+  width: 150px;
+  color: grey;
+}
+
+.selected-page {
+  color: rgb(102, 168, 255);
+}
+
+.underline {
+  width: 50px;
+  border: 2px solid grey;
+  border-radius: 2px;
+  margin: auto;
+}
+
+.selected-underline {
+  border: 2px solid rgb(102, 168, 255);
+}
+
+/* About Page */
+
+.avatar {
+  width: 150px;
+  height: auto;
+  margin: 2vh 1vh 2vh 1vh;
+  border: 4.5px solid white;
+}
+
+.personal-details-box {
+  width: calc(150px + 2vh);
+  text-align: center;
+}
+
+.link-icons-container {
+  display: inline-flex;
+}
+
+.link-icon {
+  width: 25px;
+  height: 25px;
+  margin: 2vh 1vh auto 1vh;
+  filter: invert(1);
+}
+
+.link-icon:hover {
+  filter: invert(.5);
 }
