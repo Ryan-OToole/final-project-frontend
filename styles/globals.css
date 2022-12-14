@@ -74,6 +74,7 @@ a {
   font-size: 16px;
   max-width: 450px;
   color: rgb(185, 185, 185);
+  font-style: italic;
 }
 
 .text-section span {
@@ -152,6 +153,11 @@ a {
   height: auto;
   margin: 2vh 1vh 2vh 1vh;
   border: 4.5px solid white;
+  transition: filter .2s ease-in-out;
+}
+
+.avatar:hover {
+  filter: blur(1px) brightness(.5);
 }
 
 .personal-details-box {

@@ -44,7 +44,7 @@ const About = () => {
       <div className="text-section">
         Built with <span>creatives</span> in mind, TraydPost was made to demonstrate the tools
         that <span>digital asset marketplaces</span> and <span>game developers</span> need
-        to bring their visions to web 3.0.
+        to bring their ideas to web 3.0.
       </div>
 
       <div className="fwbox img-row">
