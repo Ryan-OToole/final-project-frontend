@@ -5,7 +5,20 @@ const Card = ({card}) => {
   let MyNFTFactory;
   let MyNFTContract;  
   
-  const handleMint = async () => {
+  const handleMint = async (hash) => {
+    console.log('hash', hash);
+    fetch(`http://localhost:3000/mint/${hash}`)
+      .then(response => response.json())
+      .then(data => console.log(data));
+    // we need to call the backend and send the image hash i.e. card.src
+    // to it then look it up in the dictionary and have the info dynamically sent to mint function to call it with
+    // we also need to send the msg.sender to mint it to the right person 
+
+
+
+
+
+
 
     // console.log('handling mint');
     // MyNFTFactory = ethers.getContractFactory("MyNFT");
@@ -23,7 +36,7 @@ const Card = ({card}) => {
             <div className="card-body text-center">
               <h5 className="card-title text-center">Card title</h5>
               <p className="card-text">Some quick example</p>
-              <button className="btn btn-primary" onClick={handleMint}>Mint NFT</button>
+              <button className="btn btn-primary" onClick={() => handleMint(card.src)}>Mint NFT</button>
           </div>
         </div>
       </div>
