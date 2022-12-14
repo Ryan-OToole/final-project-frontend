@@ -71,7 +71,7 @@ const About = () => {
       <div className="fwbox img-row">
         <Image className="avatar ryan" alt="pee" src={AvRyan} />
           <div className="quote ryan-quote">
-              "WAGMI!"
+              "WAGMI to the moon!"
           </div>
         <Image className="avatar elliot" alt="pee" src={AvElliot} />
           <div className="quote elliot-quote">
