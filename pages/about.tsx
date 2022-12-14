@@ -14,13 +14,21 @@ import IconAirplane from './assets/icons/airplane_icon.png';
 
 
 const About = () => {
+
+  function copyEmail(e, string) {
+    e.preventDefault();
+    navigator.clipboard.writeText(string)
+    .then(() => alert(`${string} copied to clipboard.`));
+  }
   
   return (
     
     <div>
       <div className="header-nav-bkgd">
         <div className="mwbox">
-          <div className="header">TraydPost</div>
+          <div className="header">
+            TraydP<span>∅</span>st
+          </div>
         </div>
         <div className="mwbox">
           <div className="nav-button selected-page">
@@ -39,6 +47,7 @@ const About = () => {
       </div>
 
       <div className="spacer5"></div>
+      <div className="spacer2"></div>
       <div className="main-title">Vision</div>
       <div className="sm-divider"></div>
       <div className="text-section">
@@ -55,12 +64,23 @@ const About = () => {
 
       <div className="med-divider"></div>
       <div className="spacer5"></div>
+      <div className="spacer5"></div>
+      <div className="spacer2"></div>
 
       <div className="main-title">Meet Our Team</div>
       <div className="fwbox img-row">
-        <Image className="avatar" alt="pee" src={AvRyan} />
-        <Image className="avatar" alt="pee" src={AvElliot} />
-        <Image className="avatar" alt="pee" src={AvAlbert} />
+        <Image className="avatar ryan" alt="pee" src={AvRyan} />
+          <div className="quote ryan-quote">
+              "WAGMI!"
+          </div>
+        <Image className="avatar elliot" alt="pee" src={AvElliot} />
+          <div className="quote elliot-quote">
+              "Sup, nerds!"
+          </div>
+        <Image className="avatar albert" alt="pee" src={AvAlbert} />
+          <div className="quote albert-quote">
+              "I'm Albert's quote!"
+          </div>
       </div>
       <div className="fwbox img-row">
         <div className="personal-details-box">
@@ -68,9 +88,13 @@ const About = () => {
 
           <br />
           <div className="link-icons-container">
-            <Image className="link-icon nudge-smaller" alt="pee" src={IconOctocat} />
-            <Image className="link-icon" alt="pee" src={IconLinkedIn} />
-            <Image className="link-icon" alt="pee" src={IconAirplane} />
+            <a href="https://github.com/Ryan-OToole" target="_blank">
+              <Image className="link-icon nudge-smaller" alt="pee" src={IconOctocat} />
+            </a>
+            <a href="https://www.linkedin.com/in/ryanjohnotoole/" target="_blank">
+              <Image className="link-icon" alt="pee" src={IconLinkedIn} />
+            </a>
+            <Image onClick={(e) => copyEmail(e, "otoolerj@gmail.com")} className="link-icon" alt="pee" src={IconAirplane} />
           </div>
 
         </div>
@@ -79,9 +103,13 @@ const About = () => {
 
           <br />
           <div className="link-icons-container">
-            <Image className="link-icon nudge-smaller" alt="pee" src={IconOctocat} />
-            <Image className="link-icon" alt="pee" src={IconLinkedIn} />
-            <Image className="link-icon" alt="pee" src={IconAirplane} />
+            <a href="https://github.com/elliotmangini" target="_blank">
+              <Image className="link-icon nudge-smaller" alt="pee" src={IconOctocat} />
+            </a>
+            <a href="https://www.linkedin.com/in/elliotmangini/" target="_blank">
+              <Image className="link-icon" alt="pee" src={IconLinkedIn} />
+            </a>
+            <Image onClick={(e) => copyEmail(e, "elliot.mangini@gmail.com")} className="link-icon" alt="pee" src={IconAirplane} />
           </div>
           
           </div>
@@ -90,9 +118,13 @@ const About = () => {
 
           <br />
           <div className="link-icons-container">
-            <Image className="link-icon nudge-smaller" alt="pee" src={IconOctocat} />
-            <Image className="link-icon" alt="pee" src={IconLinkedIn} />
-            <Image className="link-icon" alt="pee" src={IconAirplane} />
+            <a href="https://github.com/virtualbushido" target="_blank">
+              <Image className="link-icon nudge-smaller" alt="pee" src={IconOctocat} />
+            </a>
+            <a href="https://www.linkedin.com/in/albert-forest-jr-816017259/" target="_blank">
+              <Image className="link-icon" alt="pee" src={IconLinkedIn} />
+            </a>
+              <Image onClick={(e) => copyEmail(e, "albertforestjr@protonmail.com")} className="link-icon" alt="pee" src={IconAirplane} />
           </div>
           
           </div>

@@ -1,5 +1,10 @@
 html,
 body {
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -45,6 +50,11 @@ a {
   width: 100vw;
   max-width: 900px;
   margin: auto;
+}
+
+.spacer2 {
+  width: 100%;
+  height: 2vh;
 }
 
 .spacer5 {
@@ -111,7 +121,7 @@ a {
 /* header and navbar */
 
 .header-nav-bkgd {
-  background: linear-gradient(black, rgb(50, 50, 50));
+  background: linear-gradient(rgb(42, 42, 42), rgb(50, 50, 50));
   padding-bottom: 1.5vh;
 }
 
@@ -123,16 +133,29 @@ a {
   font-size: 21px;
 }
 
+.header span {
+  font-size: 18px;
+}
+
 .nav-button {
   margin: auto;
   margin-top: 1vh;
   text-align: center;
   width: 150px;
   color: grey;
+  filter: drop-shadow(1px 1px 9px #000000);
 }
 
 .selected-page {
   color: rgb(102, 168, 255);
+}
+
+.nav-button:hover {
+  color: rgb(102, 168, 255);
+}
+
+.nav-button:hover .underline{
+  border: 2px solid rgb(73, 120, 182);
 }
 
 .underline {
@@ -143,7 +166,7 @@ a {
 }
 
 .selected-underline {
-  border: 2px solid rgb(102, 168, 255);
+  border: 2px solid rgb(73, 120, 182);
 }
 
 /* About Page */
@@ -158,6 +181,40 @@ a {
 
 .avatar:hover {
   filter: blur(1px) brightness(.5);
+}
+
+.quote {
+  position: absolute;
+  text-align: center;
+  color: rgb(235, 235, 235);
+  font-style: italic;
+  transform: translateY(-15px);
+  opacity: 0%;
+  transition: opacity .2s ease-in-out;
+}
+
+.ryan-quote {
+  transform: translateX(-170px) translateY(140px);
+}
+
+.ryan:hover ~ .ryan-quote {
+  opacity: 100%;
+}
+
+.elliot-quote {
+  transform: translateX(0px) translateY(140px);
+}
+
+.elliot:hover ~ .elliot-quote {
+  opacity: 100%;
+}
+
+.albert-quote {
+  transform: translateX(170px) translateY(140px);
+}
+
+.albert:hover ~ .albert-quote {
+  opacity: 100%;
 }
 
 .personal-details-box {
