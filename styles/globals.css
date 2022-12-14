@@ -222,6 +222,10 @@ a {
   text-align: center;
 }
 
+.personal-details-box span {
+  filter: drop-shadow(1px 1px 17px #ebebeb);
+}
+
 .link-icons-container {
   display: inline-flex;
 }
@@ -231,6 +235,11 @@ a {
   height: 25px;
   margin: 2vh 1vh auto 1vh;
   filter: invert(1);
+  filter: drop-shadow(1px 1px 9px #ebebeb);
+}
+
+.airplane {
+  filter: invert(.8);
 }
 
 .link-icon:hover {

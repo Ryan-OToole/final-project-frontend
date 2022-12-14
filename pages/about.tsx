@@ -84,7 +84,7 @@ const About = () => {
       </div>
       <div className="fwbox img-row">
         <div className="personal-details-box">
-          Ryan Otoole
+          <span>Ryan Otoole</span>
 
           <br />
           <div className="link-icons-container">
@@ -94,12 +94,12 @@ const About = () => {
             <a href="https://www.linkedin.com/in/ryanjohnotoole/" target="_blank">
               <Image className="link-icon" alt="pee" src={IconLinkedIn} />
             </a>
-            <Image onClick={(e) => copyEmail(e, "otoolerj@gmail.com")} className="link-icon" alt="pee" src={IconAirplane} />
+            <Image onClick={(e) => copyEmail(e, "otoolerj@gmail.com")} className="link-icon airplane" alt="pee" src={IconAirplane} />
           </div>
 
         </div>
         <div className="personal-details-box">
-          Elliot Mangini
+          <span>Elliot Mangini</span>
 
           <br />
           <div className="link-icons-container">
@@ -109,12 +109,12 @@ const About = () => {
             <a href="https://www.linkedin.com/in/elliotmangini/" target="_blank">
               <Image className="link-icon" alt="pee" src={IconLinkedIn} />
             </a>
-            <Image onClick={(e) => copyEmail(e, "elliot.mangini@gmail.com")} className="link-icon" alt="pee" src={IconAirplane} />
+            <Image onClick={(e) => copyEmail(e, "elliot.mangini@gmail.com")} className="link-icon airplane" alt="pee" src={IconAirplane} />
           </div>
           
           </div>
         <div className="personal-details-box">
-          Albert Forest Jr.
+          <span>Albert Forest Jr.</span>
 
           <br />
           <div className="link-icons-container">
@@ -124,7 +124,7 @@ const About = () => {
             <a href="https://www.linkedin.com/in/albert-forest-jr-816017259/" target="_blank">
               <Image className="link-icon" alt="pee" src={IconLinkedIn} />
             </a>
-              <Image onClick={(e) => copyEmail(e, "albertforestjr@protonmail.com")} className="link-icon" alt="pee" src={IconAirplane} />
+              <Image onClick={(e) => copyEmail(e, "albertforestjr@protonmail.com")} className="link-icon airplane" alt="pee" src={IconAirplane} />
           </div>
           
           </div>
