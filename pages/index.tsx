@@ -2,30 +2,15 @@ import CreateWallet from './components/CreateWallet'
 import React, {useEffect, useState} from 'react';
 import ConnectWallet from './components/ConnectWallet';
 import { ethers, Signer } from "ethers";
-// import MyToken from "./assets-contract/MyToken.json";
-import diverCard from "./assets/Diver.png";
-import dreamRhodesCard from "./assets/DreamRhodes.png";
-import Melo82Card from "./assets/Melo82.png";
-import metalPopcornCard from "./assets/MetalPopcorn.png";
-import midtermCard from "./assets/Midterm.png";
-import nasaInfoCard from "./assets/NASAInfo.png";
-import nmtCard from "./assets/NMT.png";
-import remnantCard from "./assets/Remnant.png";
-import ribbonGirlCard from "./assets/RibbonGirl.png";
-import rivalCard from "./assets/Rival.png";
-import sentryCard from "./assets/Sentry.png";
-import SquidPortalCard from "./assets/SquidPortal.png";
-import throedeCard from "./assets/THROEDE.png";
-import fahkoffCard from "./assets/FAHKOFF.png";
-import KSWCard from "./assets/KSW.png";
+import CARDSOBJ from './dictionary';
 import Card from './components/Card';
-
-
 
 export default function Home() {
 
-  const ERC20VOTES_ADDRESS = "0x0CBBA32981898231078CDAD4c621D734492CF02D";
-  const CARDS = [diverCard, dreamRhodesCard, Melo82Card, metalPopcornCard, midtermCard, nasaInfoCard, nmtCard, remnantCard, ribbonGirlCard, rivalCard, sentryCard, SquidPortalCard, throedeCard, fahkoffCard, KSWCard];
+  const ERC20VOTES_ADDRESS = "0x432d28bC81Cd9437736cE4Bc8e2e04eEcFcA5B7a";
+  // need to move this to call to backend for single source of truth / synchonicity
+  
+
 
   const [wallet, setWallet] = useState();
   const [walletAddress, setWalletAddress] = useState("");
@@ -43,8 +28,15 @@ export default function Home() {
   }
 
   const mapCards = () => {
-    return CARDS.map( card => {
-      return <Card card={card} />
+    let cardArray: any[] = [];
+    for (let card in CARDSOBJ) {
+      cardArray.push(CARDSOBJ[card]);
+    }
+    console.log('CARDSOBJ', CARDSOBJ);
+    console.log('cardArray', cardArray);
+    return cardArray.map( hash => {
+      console.log('hash', hash);
+      return <Card hash={hash} />
     });
   }
 
