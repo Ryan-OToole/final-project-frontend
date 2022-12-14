@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-const Card = ({hash}) => {
+const Card = ({hash, setSelectedCard, selectedCard}) => {
   console.log('hash inside card', hash);
   
   let MyNFTFactory;
@@ -17,14 +17,14 @@ const Card = ({hash}) => {
   }
   
   return (
-    <div className="col">
-            <div className="card" style={{width: "18rem"}}>
-            <img src={`https://cloudflare-ipfs.com/ipfs/${hash}`} className="card-img-top" alt="..." />
-            <div className="card-body text-center">
-              <h5 className="card-title text-center">Card title</h5>
-              <p className="card-text">Some quick example</p>
-              <button className="btn btn-primary" onClick={() => handleMint(hash)}>Mint NFT</button>
-          </div>
+    <div className="col" onClick={() => setSelectedCard(hash)}>
+      <div className="small-card">
+        <img src={`https://cloudflare-ipfs.com/ipfs/${hash}`} className="small-card-img" alt="..." />
+          {/* <div className="card-body text-center">
+            <h5 className="card-title text-center">Card title</h5>
+            <p className="card-text">Some quick example</p>
+            <button className="btn btn-primary" onClick={() => handleMint(hash)}>Mint NFT</button>
+          </div> */}
         </div>
       </div>
     )

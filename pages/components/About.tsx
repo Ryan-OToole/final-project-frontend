@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import Image from 'next/image';
 
-import PlanetariyumTrailer from './assets/gifs/PlanetariyumTrailer.gif';
-import AvRyan from './assets/avatars/av_ryan.jpeg';
-import AvElliot from './assets/avatars/av_elliot.jpeg';
-import AvAlbert from './assets/avatars/av_albert.jpeg';
+import PlanetariyumTrailer from '../assets/gifs/PlanetariyumTrailer.gif';
+import AvRyan from '../assets/avatars/av_ryan.jpeg';
+import AvElliot from '../assets/avatars/av_elliot.jpeg';
+import AvAlbert from '../assets/avatars/av_albert.jpeg';
 
-import IconOctocat from './assets/icons/octocat_icon.png';
-import IconLinkedIn from './assets/icons/linkedin_icon.png';
-import IconAirplane from './assets/icons/airplane_icon.png';
+import IconOctocat from '../assets/icons/octocat_icon.png';
+import IconLinkedIn from '../assets/icons/linkedin_icon.png';
+import IconAirplane from '../assets/icons/airplane_icon.png';
 
 
 
@@ -24,28 +24,6 @@ const About = () => {
   return (
     
     <div>
-      <div className="header-nav-bkgd">
-        <div className="mwbox">
-          <div className="header">
-            TraydP<span>∅</span>st
-          </div>
-        </div>
-        <div className="mwbox">
-          <div className="nav-button selected-page">
-            About
-            <div className="underline selected-underline"></div>
-          </div>
-          <div className="nav-button">
-            MetaGallery
-            <div className="underline"></div>
-          </div>
-          <div className="nav-button">
-            Collection
-            <div className="underline"></div>
-            </div>
-        </div>
-      </div>
-
       <div className="spacer5"></div>
       <div className="spacer2"></div>
       <div className="main-title">Vision</div>

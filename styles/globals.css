@@ -66,6 +66,10 @@ a {
   transform: scale(.92);
 }
 
+.force-wide {
+  visibility: hidden;
+}
+
 /* styles */
 
 /* reusable */
@@ -246,4 +250,183 @@ a {
   filter: invert(.5);
 }
 
-/* TESTING */
+/* Big Card */
+
+.big-card-container {
+  position: fixed;
+  top: 15vh;
+  left: 0%;
+  height: 85vh;
+  width: 100vw;
+  animation: fade-in .1s ease-in forwards;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0}
+  100% { opacity: 1}
+}
+
+.big-img-container {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.big-image {
+  position: relative;
+  height: 60vmin;
+  width: auto;
+  /* margin: auto; */
+  margin: 15px;
+  transition: transform 5s ease-in-out;
+}
+
+.big-image:hover {
+  transform: scale(1.05);
+}
+
+
+
+.panel {
+  position: relative;
+  align-items: center;
+  min-width: 10vw;
+  max-width: 16vw;
+  background: rgb(216, 216, 216);
+  border-radius: 1vh;
+  height: 45vh;
+  color: rgb(37, 37, 37);
+  margin-top: -2vh;
+}
+
+.sub-panel {
+  background-color: rgb(163, 163, 163);
+  border-radius: 5px;
+  margin: 10px;
+  height: 65%;
+  font-size: 1.4vmin;
+}
+
+.big-card-details {
+  margin-left: auto;
+}
+
+.big-card-actions {
+  margin-right: auto;
+}
+
+.detail-text-header {
+  position: relative;
+  word-wrap: normal;
+  margin: auto;
+  text-align: center;
+  font-size: 2vmin;
+}
+
+.interior-item {
+  margin: .7vw auto .5vh auto;
+  padding: 0vw 2vw 0vw 2vw;
+  position: relative;
+}
+
+.action-button-positioning {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  display: flex;
+}
+
+.action-button {
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.transition-blur {
+  transition: filter .2s ease-in-out;
+}
+
+.conditional-blur {
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.img-and-button {
+  position: relative;
+}
+
+.back-button {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(222, 222, 222);
+  border-radius: 100%;
+  position: absolute;
+  color: black;
+  text-align: center;
+  top: 2vh;
+  right: -4%;
+}
+
+.back-button:hover {
+  background-color: grey;
+}
+
+.card-attributes {
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.attribute-title {
+  font-weight: bold;
+}
+
+.attribute-value {
+  text-align: right;
+  margin-right: 15px;
+  font-style: oblique;
+}
+
+.wallet-list {
+  width: 90%;
+  height: 100%;
+  position: relative;
+  overflow: scroll;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.wallet-item {
+  font-style: oblique;
+  text-align: left;
+  margin: 2px;
+  margin-left: 0px;
+}
+
+/* big grids */
+
+.grid-container {
+  width: 90vw;
+  margin: auto;
+  margin-top: 3vh;
+  max-width: 1000px;
+  padding: 2vw;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.small-card {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.small-card-img {
+  width: 90%;
+  height: auto;
+}
