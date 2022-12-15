@@ -118,7 +118,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
 
   return (
     <div className="big-card-container">
-      <button onClick={redeemCard}>Redeem Me Now</button>
+      {/* <button onClick={redeemCard}>Redeem Me Now</button> */}
         <div className="big-img-container">
 
             <div className="panel big-card-details">
@@ -142,7 +142,12 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
                 </ul>
               </div>
               <div className="action-button-positioning">
-                <button className="btn btn-success interior-item action-button mint-button animate" onClick={() => handleMint()}>(`${pageSelected === "Collection" ? `${redeemed ? "Redeemed" : "Redeem"}` : "Mint"}`)</button>
+                { pageSelected === "Collection" ?
+                  <button className="btn btn-success interior-item action-button mint-button animate" onClick={() => {!redeemed ? redeemCard() : null }}>{redeemed ? "Redeemed" : "Redeem"}</button>
+                : null }
+                { pageSelected !== "Collection" ?
+                  <button className="btn btn-success interior-item action-button mint-button animate" onClick={() => handleMint()}>Mint</button>
+                : null }
               </div>
             </div>
 
