@@ -46,7 +46,7 @@ const ConnectWallet = (props: any) => {
 
     return (
         <div>
-            <button type="button" className="btn btn-primary btn-lg px-4 gap-3" onClick={connect}>Connect Wallet</button>
+            <button type="button" className="btn btn-success btn-lg px-4 gap-3" onClick={connect}>Connect</button>
         </div>
     )
 }

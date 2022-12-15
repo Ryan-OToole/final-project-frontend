@@ -107,13 +107,27 @@ export default function Home() {
 
       : null}
 
-      {!wallet && (pageSelected === "MetaGallery") ?
+      {!wallet && ((pageSelected === "MetaGallery") || (pageSelected === "Collection")) ?
         <div className={`px-4 py-5 my-5 text-center`}>
-          <h1 className="display-5 fw-bold">To Get Started<br />Connect Your Wallet</h1>
+          <h1 className="display-5 fw-bold">
+            <br />
+
+            {pageSelected === "MetaGallery" ? "To Browse Mintable Cards..." : null}
+            {pageSelected === "Collection" ? "To See Your Collection..." : null}
+            <br />
+
+            <span className="purple-text">Connect Your Wallet</span></h1>
+            <br />
+            <br />
+            <br />
+            <br />
+
+
           <div className="col-lg-6 mx-auto">
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <CreateWallet setWallet={setWallet} />
               <ConnectWallet setWallet={setWallet} setContract={setContract} />
+              <br />
+              <CreateWallet setWallet={setWallet} />
             </div>
           </div>
         </div>

@@ -430,3 +430,7 @@ a {
   width: 90%;
   height: auto;
 }
+
+.purple-text {
+  color: rgb(249, 102, 239);
+}

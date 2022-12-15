@@ -14,7 +14,7 @@ const CreateWallet = (props: any) => {
     }
     return (
         <div>
-            <button type="button" className="btn btn-success btn-lg px-4 gap-3" onClick={createRandomWallet}>Create wallet</button>
+            <button type="button" className="btn btn-secondary btn-lg px-4 gap-3" onClick={createRandomWallet}>Create</button>
         </div>
     )
 }
