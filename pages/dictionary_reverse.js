@@ -30,7 +30,6 @@ const REVERSELOOKUP = {
     "QmWvDCfN79EpFWqb2VqiED9bECXSCyRrsnDG9PFTK9ioFd": "Cloud Collapse",
     "QmW3htPzho2r9wXcSDvzNFCg8vf2MsfbRP2QgC9K5Ltr57": "Pinnacle",
     "QmZp6QDEbEKzRnqW9tXbhbdvFgRzTsfvGKY2Nc9zCinLHP": "Heat Well",
-
 }
 
 export default REVERSELOOKUP;

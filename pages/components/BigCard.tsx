@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useCallback} from "react";
 import REVERSELOOKUP from '../dictionary_reverse';
+import ROTATION from '../dictionary_rotation';
 
 const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, setIsMinting}) => {
   console.log('selectedCard inside Bigcard', selectedCard);
@@ -10,10 +11,12 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
   
   let MyNFTFactory;
   let MyNFTContract;
+
+  console.log(REVERSELOOKUP[selectedCard]);
   
   const handleMint = async () => {
     setIsMinting(true);
-    const tx = await contract.safeMint("Diver", selectedCard, 837, 19, 2, 11, 13);
+    const tx = await contract.safeMint(REVERSELOOKUP[selectedCard], selectedCard, 837, 19, 2, 11, 13);
     await tx.wait();
     console.log("tx", tx);
     // const tx2 = await contract.nftHolderAttributes[]
@@ -24,16 +27,39 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
   function closeSelected() {
     setSelectedCard("")
   }
-  const escFunction = useCallback((event) => {
+  function seek(direction) {
+    console.log("seek called")
+    for (let i = 0; i < ROTATION.length; i++) {
+      if (ROTATION[i] === selectedCard) {
+        if (direction === "back") {
+          setSelectedCard("")
+          setSelectedCard(ROTATION[(i - 1)]);
+        } else if (direction === "forward") {
+          setSelectedCard("")
+          setSelectedCard(ROTATION[(i + 1)]);
+        }
+      }
+    }
+  }
+  const keyPressed = useCallback((event) => {
     if (event.key === "Escape") {
       closeSelected();
     }
+    if (event.key === "ArrowLeft") {
+      seek("back");
+    }
+    if (event.key === "ArrowRight") {
+      seek("forward");
+    }
   }, []);
   useEffect(() => {
-    document.addEventListener("keydown", escFunction, false);
+    document.addEventListener("keydown", keyPressed, false);
+    document.addEventListener("keydown", keyPressed, false);
+
 
     return () => {
-      document.removeEventListener("keydown", escFunction, false);
+      document.removeEventListener("keydown", keyPressed, false);
+      document.removeEventListener("keydown", keyPressed, false);
     };
   }, []);
 
