@@ -19,6 +19,8 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
 
     CharacterAttributes[] allCardsInGame;
 
+    event MintReceipt(address sender, uint256 tokenId);
+
     struct CharacterAttributes {
         string name;
         string imageURI;
@@ -35,7 +37,6 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
     }
 
     function safeMint(
-        address to,
         string memory _name,
         string memory _imageURI,
         uint256 _percievedLoudness,
@@ -45,8 +46,8 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         uint256 _duration
     ) public onlyRole(MINTER_ROLE) {
         uint256 tokenId = _tokenIdCounter.current();
-        _safeMint(to, tokenId);
-        nftHolders[to] = tokenId;
+        _safeMint(msg.sender, tokenId);
+        nftHolders[msg.sender] = tokenId;
         nftHolderAttributes[tokenId] = CharacterAttributes({
             name: _name,
             imageURI: _imageURI,
@@ -62,6 +63,7 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
             _name
         );
         allCardsInGame.push(nftHolderAttributes[tokenId]);
+        emit MintReceipt(msg.sender, tokenId);
         _tokenIdCounter.increment();
     }
 

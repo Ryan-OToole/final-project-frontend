@@ -7,29 +7,27 @@ import Card from './components/Card';
 import NavBar from './components/NavBar';
 import About from './components/About';
 import BigCard from './components/BigCard';
+import { MyNFT } from "../typechain-types";
 
-export default function Home() {
-  // const ERC20VOTES_ADDRESS = "0x432d28bC81Cd9437736cE4Bc8e2e04eEcFcA5B7a";
-  // need to move this to call to backend for single source of truth / synchonicity
-  
+export default function Home() {  
   const [pageSelected, setPageSelected] = useState("MetaGallery");
   const [selectedCard, setSelectedCard] = useState("");
 
   const [wallet, setWallet] = useState();
   const [walletAddress, setWalletAddress] = useState("");
   const [balance, setBalance] = useState(0);
-  const [contract, setContract] = useState();
+  const [contract, setContract] = useState<MyNFT | null>(null)
 
-  // const pullWalletUp = async (wallet: any) => {
-  //   console.log('wallet', wallet);
-  //   const balanceBN = await wallet.getBalance();
-  //   const balance = ethers.utils.formatEther(balanceBN);
-  //   // const tokenContract = new ethers.Contract(ERC20VOTES_ADDRESS, MyToken.abi, wallet);
-  //   // const walletAddress = await wallet.getAddress();
-  //   setWalletAddress(walletAddress);
-  //   setWallet(wallet);
-  //   setBalance(Number(balance));
-  // }
+
+  useEffect(() => {
+    const mintReceipt = async (address, tokenId) => {
+      console.log('address', address);
+      console.log('tokenId', tokenId);
+    }
+    if (contract) {
+      contract.on("MintReceipt", mintReceipt);
+    }
+  }, []);
 
   const mapCards = () => {
     let cardArray: any[] = [];

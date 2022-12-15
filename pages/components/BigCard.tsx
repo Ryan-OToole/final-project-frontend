@@ -9,7 +9,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract}) => {
   let MyNFTContract;  
   
   const handleMint = async () => {
-    const tx = await contract.safeMint("0xb0b9a3dB296F4bCA7202c040DF8A696B4A0e8C5E", "Diver", selectedCard, 837, 19, 2, 11, 13);
+    const tx = await contract.safeMint("Diver", selectedCard, 837, 19, 2, 11, 13);
     await tx.wait();
     console.log("tx", tx);
   }

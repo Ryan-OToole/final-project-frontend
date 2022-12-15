@@ -28,7 +28,9 @@ const ConnectWallet = (props: any) => {
                 console.log("accounts", accounts);
                 const provider = new ethers.providers.Web3Provider(ethereum);
                 const signer = provider.getSigner();
-                const myNFTFactory = new ethers.Contract("0x432d28bC81Cd9437736cE4Bc8e2e04eEcFcA5B7a", myNFTJson.abi, signer);
+                
+                // contract instance should be stored in backend and fetched with API call 
+                const myNFTFactory = new ethers.Contract("0x4caEb02e28DD170bE1cFb7af535664518BA9eB06", myNFTJson.abi, signer);
                 props.setContract(myNFTFactory);
                 props.setWallet(signer);
                 // props.pullWalletUp(wallet);
