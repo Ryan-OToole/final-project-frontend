@@ -12,6 +12,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract}) => {
     const tx = await contract.safeMint("Diver", selectedCard, 837, 19, 2, 11, 13);
     await tx.wait();
     console.log("tx", tx);
+    // const tx2 = await contract.nftHolderAttributes[]
   }
 
 

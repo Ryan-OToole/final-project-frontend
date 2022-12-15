@@ -14,10 +14,11 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     Counters.Counter private _tokenIdCounter;
 
-    mapping(address => uint256) public nftHolders;
+    mapping(address => uint256[]) public nftHolders;
     mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 
     CharacterAttributes[] allCardsInGame;
+    string[] yourCardsInGame;
 
     event MintReceipt(address sender, uint256 tokenId);
 
@@ -34,6 +35,7 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
     constructor() ERC721("MyToken", "MTK") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
+        _tokenIdCounter.increment();
     }
 
     function safeMint(
@@ -47,7 +49,7 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
     ) public onlyRole(MINTER_ROLE) {
         uint256 tokenId = _tokenIdCounter.current();
         _safeMint(msg.sender, tokenId);
-        nftHolders[msg.sender] = tokenId;
+        nftHolders[msg.sender].push(tokenId);
         nftHolderAttributes[tokenId] = CharacterAttributes({
             name: _name,
             imageURI: _imageURI,
@@ -118,5 +120,23 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         bytes4 interfaceId
     ) public view override(ERC721, AccessControl) returns (bool) {
         return super.supportsInterface(interfaceId);
+    }
+
+    function checkForUsersNFTs()
+        public
+        returns (string[] memory yoCardsInGame)
+    {
+        uint256[] memory nftArray = nftHolders[msg.sender];
+        if (nftArray[0] > 0) {
+            for (uint i = 0; i < nftArray.length; i++) {
+                CharacterAttributes memory nft = nftHolderAttributes[
+                    nftArray[i]
+                ];
+                yourCardsInGame.push(nft.imageURI);
+            }
+            return yourCardsInGame;
+        } else {
+            return yourCardsInGame;
+        }
     }
 }

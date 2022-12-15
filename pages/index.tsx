@@ -24,7 +24,7 @@ export default function Home() {
       console.log('i am the event being emitted be happy');
       console.log('address', sender);
       console.log('tokenId', Number(tokenId));
-      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0x4caEb02e28DD170bE1cFb7af535664518BA9eB06/${tokenId.toNumber()}`)
+      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xeBDEb607031B7cD3fC11805e84e0136C8C2375cD/${tokenId.toNumber()}`)
       alert('i am the event being emitted be happy');
     }
     if (contract) {
@@ -42,8 +42,43 @@ export default function Home() {
     });
   }
 
+  // useEffect(() => {
+
+  //   test();
+  // }, [pageSelected])
+
+  const test = async () => {
+    console.log('contract', contract);
+    if (contract) {
+      // transaction failed after await need to debug and figure out why 
+      // this logic is not working trying to pull hashes from backend
+      const test = await contract.checkForUsersNFTs();
+      await test.wait();
+      console.log('test', test);
+    }
+    else {
+      alert('Please connect to Metamask to see your collection');
+    }
+  }
+
+
+  const mapCollection = () => {
+
+
+    // let cardArray: any[] = [];
+    // for (let card in CARDSOBJ) {
+    //   cardArray.push(CARDSOBJ[card]);
+    // }
+    // return cardArray.map( hash => {
+    //   return <Card key={hash} setSelectedCard={setSelectedCard} selectedCard={selectedCard} hash={hash} wallet={wallet} />
+    // });
+  }
+
+  
+
   return (
     <div>
+      <button onClick={test}>TEST ME TEST ME</button>
       <NavBar pageSelected={pageSelected} setPageSelected={setPageSelected} setSelectedCard={setSelectedCard}/>
 
       {pageSelected === "About" ? <About /> : null}
@@ -55,6 +90,18 @@ export default function Home() {
           {/* <p>Your wallet address is: {walletAddress}</p> */}
           <div className={`gallery-grid transition-blur ${selectedCard ? "conditional-blur" : null}`}>
           {mapCards()}
+          </div>
+        </div>
+
+      : null}
+
+{
+      wallet && (pageSelected === "Collection")
+        ?
+        <div className="grid-container">
+          {/* <p>Your wallet address is: {walletAddress}</p> */}
+          <div className={`gallery-grid transition-blur ${selectedCard ? "conditional-blur" : null}`}>
+          {mapCollection()}
           </div>
         </div>
 
