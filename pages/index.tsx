@@ -18,6 +18,7 @@ export default function Home() {
   const [balance, setBalance] = useState(0);
   const [contract, setContract] = useState<MyNFT | null>(null)
   const [isMinting, setIsMinting] = useState(false);
+  const [collection, setCollection] = useState<string[] | null>(null);
 
 
   useEffect(() => {
@@ -43,18 +44,17 @@ export default function Home() {
     });
   }
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   test();
-  // }, [pageSelected])
+    checkForUsersNFTs();
+  }, [pageSelected])
 
-  const test = async () => {
+  const checkForUsersNFTs = async () => {
     console.log('contract', contract);
     if (contract) {
-      // transaction failed after await need to debug and figure out why 
-      // this logic is not working trying to pull hashes from backend
-      const test = await contract.checkForUsersNFTs();
-      console.log('test', test);
+      const ipfsHashArray = await contract.checkForUsersNFTs();
+      setCollection(ipfsHashArray);
+      console.log('ipfsHashArray', ipfsHashArray);
     }
     else {
       alert('Please connect to Metamask to see your collection');
@@ -63,22 +63,19 @@ export default function Home() {
 
 
   const mapCollection = () => {
-
-
-    // let cardArray: any[] = [];
-    // for (let card in CARDSOBJ) {
-    //   cardArray.push(CARDSOBJ[card]);
-    // }
-    // return cardArray.map( hash => {
-    //   return <Card key={hash} setSelectedCard={setSelectedCard} selectedCard={selectedCard} hash={hash} wallet={wallet} />
-    // });
+    let cardArray: any[] = [];
+    for (let card in collection) {
+      cardArray.push(collection[card]);
+    }
+    return cardArray.map( hash => {
+      return <Card key={hash} setSelectedCard={setSelectedCard} selectedCard={selectedCard} hash={hash} wallet={wallet} />
+    });
   }
 
   
 
   return (
     <div>
-      <button onClick={test}>TEST ME TEST ME</button>
       <NavBar pageSelected={pageSelected} setPageSelected={setPageSelected} setSelectedCard={setSelectedCard}/>
 
       {pageSelected === "About" ? <About /> : null}
