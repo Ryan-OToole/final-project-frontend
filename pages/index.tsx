@@ -17,6 +17,7 @@ export default function Home() {
   const [walletAddress, setWalletAddress] = useState("");
   const [balance, setBalance] = useState(0);
   const [contract, setContract] = useState<MyNFT | null>(null)
+  const [isMinting, setIsMinting] = useState(false);
 
 
   useEffect(() => {
@@ -24,8 +25,10 @@ export default function Home() {
       console.log('i am the event being emitted be happy');
       console.log('address', sender);
       console.log('tokenId', Number(tokenId));
+      setIsMinting(false);
       alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xeBDEb607031B7cD3fC11805e84e0136C8C2375cD/${tokenId.toNumber()}`)
-      alert('i am the event being emitted be happy');
+
+      // alert('i am the event being emitted be happy');
     }
     if (contract) {
       contract.on("MintReceipt", mintReceipt);
@@ -125,16 +128,16 @@ export default function Home() {
 
           <div className="col-lg-6 mx-auto">
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <ConnectWallet setWallet={setWallet} setContract={setContract} />
-              <br />
               <CreateWallet setWallet={setWallet} />
+              <br />
+              <ConnectWallet setWallet={setWallet} setContract={setContract} />
             </div>
           </div>
         </div>
       : null}
 
       { selectedCard ?
-        <BigCard selectedCard={selectedCard} setSelectedCard={setSelectedCard} wallet={wallet} contract={contract}/>
+        <BigCard isMinting={isMinting} setIsMinting={setIsMinting} selectedCard={selectedCard} setSelectedCard={setSelectedCard} wallet={wallet} contract={contract}/>
       : null } 
     </div>
   )
