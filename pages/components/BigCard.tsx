@@ -74,7 +74,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
 
             <div className="img-and-button">
                 <img className="big-image" src={`https://cloudflare-ipfs.com/ipfs/${selectedCard}`} alt="..."></img>
-                <div onClick={() => closeSelected()} className="back-button">X</div>
+                <div onClick={() => closeSelected()} className="back-button"><span>esc</span></div>
             </div>
 
             <div className="panel big-card-actions">
@@ -83,16 +83,16 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
               <h5 className="interior-item detail-text-header">Circulating</h5>
               <div className="sub-panel">
                 <ul className="wallet-list">
-                  {randomWalletsLength > 0 ? <p className="wallet-item">0x2D6131a98A3fA7B6dD8Ae63A5B8AF01ba8258594</p> : null}
-                  {randomWalletsLength > 1 ? <p className="wallet-item">0xf07ba2229b4da47895ce0a4ab4298ad7f8cb3a4d</p> : null}
-                  {randomWalletsLength > 2 ? <p className="wallet-item">0xf07ba2229b4da47895ce0a4ab4298ad7f8cb3a4d</p> : null}
-                  {randomWalletsLength > 3 ? <p className="wallet-item">0x0b7a434782792b539623fd72a428838ea4173b22</p> : null}
-                  {randomWalletsLength > 4 ? <p className="wallet-item">0xe4feb387cb1daff4bf9108581b116e5fa737bea2</p> : null}
-                  {randomWalletsLength > 5 ? <p className="wallet-item">0xcfe2cd1e76ef398b137f9ec8031b87982e18e4ac</p> : null}
-                  {randomWalletsLength > 6 ? <p className="wallet-item">0x44c1767ed909e808cee9a92d016ce3956d60871f</p> : null}
-                  {randomWalletsLength > 7 ? <p className="wallet-item">0x8b2b41b8f353aa4e440d1550242623670aa5b784</p> : null}
-                  {randomWalletsLength > 8 ? <p className="wallet-item">0x3bcf58fc7b242285c692b7568406f9adf22703b0</p> : null}
-                  {randomWalletsLength > 9 ? <p className="wallet-item">0xc5f1d05d25b1a296d2c545ef98b296b7dc110132</p> : null}
+                  {randomWalletsLength > 0 ? <a className="wallet-item">0x2D6131a98A3fA7B6dD8Ae63A5B8AF01ba8258594</a> : null}
+                  {randomWalletsLength > 1 ? <a className="wallet-item">0xf07ba2229b4da47895ce0a4ab4298ad7f8cb3a4d</a> : null}
+                  {randomWalletsLength > 2 ? <a className="wallet-item">0xf07ba2229b4da47895ce0a4ab4298ad7f8cb3a4d</a> : null}
+                  {randomWalletsLength > 3 ? <a className="wallet-item">0x0b7a434782792b539623fd72a428838ea4173b22</a> : null}
+                  {randomWalletsLength > 4 ? <a className="wallet-item">0xe4feb387cb1daff4bf9108581b116e5fa737bea2</a> : null}
+                  {randomWalletsLength > 5 ? <a className="wallet-item">0xcfe2cd1e76ef398b137f9ec8031b87982e18e4ac</a> : null}
+                  {randomWalletsLength > 6 ? <a className="wallet-item">0x44c1767ed909e808cee9a92d016ce3956d60871f</a> : null}
+                  {randomWalletsLength > 7 ? <a className="wallet-item">0x8b2b41b8f353aa4e440d1550242623670aa5b784</a> : null}
+                  {randomWalletsLength > 8 ? <a className="wallet-item">0x3bcf58fc7b242285c692b7568406f9adf22703b0</a> : null}
+                  {randomWalletsLength > 9 ? <a className="wallet-item">0xc5f1d05d25b1a296d2c545ef98b296b7dc110132</a> : null}
 
                 </ul>
 
@@ -105,11 +105,6 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
 
 
         </div>
-          {isMinting ?
-            <div className="progress-bar-container">
-              <div className="progress-bar"></div>
-            </div>
-          : null}
 
           <div className="spacer5"></div>
           <div className="spacer5"></div>
@@ -117,6 +112,11 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
           <div className="nudge-bigger">
             <div className="circle"></div>
           </div>
+          {isMinting ?
+            <div className="progress-bar-container">
+              <div className="progress-bar"></div>
+            </div>
+          : null}
     </div>
     )
   }
