@@ -18,28 +18,26 @@ export default function Home() {
   const [wallet, setWallet] = useState();
   const [walletAddress, setWalletAddress] = useState("");
   const [balance, setBalance] = useState(0);
-  // const [tokenContract, setTokenContract] = useState();
+  const [contract, setContract] = useState();
 
-  const pullWalletUp = async (wallet: any) => { 
-    const balanceBN = await wallet.getBalance();
-    const balance = ethers.utils.formatEther(balanceBN);
-    // const tokenContract = new ethers.Contract(ERC20VOTES_ADDRESS, MyToken.abi, wallet);
-    const walletAddress = await wallet.getAddress();
-    setWalletAddress(walletAddress);
-    setWallet(wallet);
-    setBalance(Number(balance));
-  }
+  // const pullWalletUp = async (wallet: any) => {
+  //   console.log('wallet', wallet);
+  //   const balanceBN = await wallet.getBalance();
+  //   const balance = ethers.utils.formatEther(balanceBN);
+  //   // const tokenContract = new ethers.Contract(ERC20VOTES_ADDRESS, MyToken.abi, wallet);
+  //   // const walletAddress = await wallet.getAddress();
+  //   setWalletAddress(walletAddress);
+  //   setWallet(wallet);
+  //   setBalance(Number(balance));
+  // }
 
   const mapCards = () => {
     let cardArray: any[] = [];
     for (let card in CARDSOBJ) {
       cardArray.push(CARDSOBJ[card]);
     }
-    console.log('CARDSOBJ', CARDSOBJ);
-    console.log('cardArray', cardArray);
     return cardArray.map( hash => {
-      console.log('hash', hash);
-      return <Card setSelectedCard={setSelectedCard} selectedCard={selectedCard} hash={hash} />
+      return <Card key={hash} setSelectedCard={setSelectedCard} selectedCard={selectedCard} hash={hash} wallet={wallet} />
     });
   }
 
@@ -66,15 +64,15 @@ export default function Home() {
           <h1 className="display-5 fw-bold">To Get Started<br />Connect Your Wallet</h1>
           <div className="col-lg-6 mx-auto">
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <CreateWallet pullWalletUp={pullWalletUp} />
-              <ConnectWallet pullWalletUp={pullWalletUp} />
+              <CreateWallet setWallet={setWallet} />
+              <ConnectWallet setWallet={setWallet} setContract={setContract} />
             </div>
           </div>
         </div>
       : null}
 
       { selectedCard ?
-        <BigCard selectedCard={selectedCard} setSelectedCard={setSelectedCard}/>
+        <BigCard selectedCard={selectedCard} setSelectedCard={setSelectedCard} wallet={wallet} contract={contract}/>
       : null } 
     </div>
   )

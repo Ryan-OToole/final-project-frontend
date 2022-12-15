@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from "react";
 
-const Card = ({hash, setSelectedCard, selectedCard}) => {
-  console.log('hash inside card', hash);
+const Card = ({hash, setSelectedCard, selectedCard, wallet}) => {
   
   let MyNFTFactory;
   let MyNFTContract;  
   
-  const handleMint = async (hash) => {
-    console.log('http://localhost:3000/mint/${hash}', `http://localhost:3000/mint/${hash}`);
-    fetch(`http://localhost:3000/mint/${hash}`)
+  const handleMint = async (hash, wallet) => {
+    fetch(`http://localhost:3000/mint/${hash}/${wallet}`)
       .then(response => response.json())
       .then(data => console.log(data));
     // we need to call the backend and send the image hash i.e. card.src

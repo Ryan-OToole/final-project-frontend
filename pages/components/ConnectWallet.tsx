@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ethers } from "ethers";
+import * as myNFTJson from "../assets2/MyNFT.json";
 
 declare global {
     interface Window{
@@ -8,6 +9,7 @@ declare global {
 }
   
 const ConnectWallet = (props: any) => {
+    let signer;
     const connect = async () => {
         console.log('hi')
         try {
@@ -23,9 +25,14 @@ const ConnectWallet = (props: any) => {
                   alert("You are not connected to the Goerli Test Network!");
                 }
                 const accounts = await ethereum.request({ method: "eth_requestAccounts"});
+                console.log("accounts", accounts);
                 const provider = new ethers.providers.Web3Provider(ethereum);
-                const wallet = provider.getSigner();
-                props.pullWalletUp(wallet);
+                const signer = provider.getSigner();
+                const myNFTFactory = new ethers.Contract("0x432d28bC81Cd9437736cE4Bc8e2e04eEcFcA5B7a", myNFTJson.abi, signer);
+                props.setContract(myNFTFactory);
+                props.setWallet(signer);
+                // props.pullWalletUp(wallet);
+                console.log('hi again')
             }   
     
         }

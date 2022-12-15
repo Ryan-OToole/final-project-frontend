@@ -1,19 +1,17 @@
 import React, {useEffect, useState, useCallback} from "react";
 
-const BigCard = ({selectedCard, setSelectedCard}) => {
-  console.log('selectedCard inside card', selectedCard);
+const BigCard = ({selectedCard, setSelectedCard, wallet, contract}) => {
+  console.log('selectedCard inside Bigcard', selectedCard);
+  console.log('wallet inside Bigcard', wallet);
+  
   
   let MyNFTFactory;
   let MyNFTContract;  
   
-  const handleMint = async (selectedCard, e) => {
-    // console.log('http://localhost:3000/mint/${selectedCard}', `http://localhost:3000/mint/${selectedCard}`);
-    fetch(`http://localhost:3000/mint/${selectedCard}`)
-      .then(response => response.json())
-      .then(data => console.log(data));
-    // we need to call the backend and send the image selectedCard i.e. card.src
-    // to it then look it up in the dictionary and have the info dynamically sent to mint function to call it with
-    // we also need to send the msg.sender to mint it to the right person 
+  const handleMint = async () => {
+    const tx = await contract.safeMint("0xb0b9a3dB296F4bCA7202c040DF8A696B4A0e8C5E", "Diver", selectedCard, 837, 19, 2, 11, 13);
+    await tx.wait();
+    console.log("tx", tx);
   }
 
 

@@ -10,7 +10,7 @@ const CreateWallet = (props: any) => {
             etherscan: process.env.ETHERSCAN_API_KEY,
         });
         const wallet = await ethers.Wallet.createRandom().connect(provider);
-        props.pullWalletUp(wallet);
+        props.setWallet(wallet);
     }
     return (
         <div>
