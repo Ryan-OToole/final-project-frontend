@@ -13,7 +13,23 @@ const CARDSOBJ = {
     Rival: "QmcTC37Pgq9x4gfEjz9GsGiPD7ASQUu1CEJy7inD1mbtrr",
     Sentry: "QmYW9UqW5okpZqwEYpe4ZUpfd4rSwptw8VNwHwMwRe77kk",
     SquidPortal: "QmcTLuS43GnxJNsE3vqSjYZ1MuqVni1BUm2kRw1ErGfdMU",
-    Throede: "QmT73JbNuabwme9oSRWBqwWYF9kQL4NioaPhUqQYNptiVu"
+    Throede: "QmT73JbNuabwme9oSRWBqwWYF9kQL4NioaPhUqQYNptiVu",
+    
+    Geef: "QmfZ6ZzZ6xi8ivUpMRhNjMd2MpLdqz5VVC2A7sUN4BVs8K",
+    Stolen: "QmRyBRxMCNBfU31rmAyNLzdRcZ5iG9noHS1SvPdCfXKmvR",
+    Resurrected: "QmRReUvw4zMo8gcmLKcWyZPdekdv9URCCrjUzCC8PAGEA4",
+    London: "QmSQFnwXcFsqNAdLQFwGzEwWgAH67x1Y3ArDLMQDzq5rbb",
+    RighteousKing: "QmZTNHhnKkpRLKCevuqKYANptWSfQcEHN8KAWF4EpegunT",
+    PulseMechanism: "QmRnKT4ovGqGne2J4rL6AG7twE9Cica53tqcgFD1BZeLT4",
+    TradeSanctuary: "QmbtXj9jaoFxUjfXCdo6rCsKyC9ZM5ZiL5WRnFLeZsgiQw",
+    ButterflyTalisman: "QmdxspR4vAjtB7M4JyGBeHjBWCVDDGGyLuDt4BGi4r6FSz",
+    Hollows: "QmNvBFyxiVeyTrPtgzmY1b4HWFRFgJDDkt7q51wvz2REkm",
+    RubyCharge: "QmQxtt9rcdCVjQ9tGopcFZ4qxJEknXgHuiLPUyF96CE9u2",
+    IceGate: "QmQxubhroHTEv3LerCstzZiH2FWsnXxKiKE1f4nyva5NWo",
+    UnityMonument: "QmVrydjom8j6rwSMwuhsrc3f5LQrmf4ubr1xLnvmwZ19Ti",
+    CloudCollapse: "QmWvDCfN79EpFWqb2VqiED9bECXSCyRrsnDG9PFTK9ioFd",
+    Pinnacle: "QmW3htPzho2r9wXcSDvzNFCg8vf2MsfbRP2QgC9K5Ltr57",
+    HeatWell: "QmZp6QDEbEKzRnqW9tXbhbdvFgRzTsfvGKY2Nc9zCinLHP",
 }
 export default CARDSOBJ;
  

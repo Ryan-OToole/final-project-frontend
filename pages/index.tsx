@@ -17,6 +17,7 @@ export default function Home() {
   const [walletAddress, setWalletAddress] = useState("");
   const [balance, setBalance] = useState(0);
   const [contract, setContract] = useState<MyNFT | null>(null)
+  const [isMinting, setIsMinting] = useState(false);
 
 
   useEffect(() => {
@@ -24,8 +25,8 @@ export default function Home() {
       console.log('i am the event being emitted be happy');
       console.log('address', sender);
       console.log('tokenId', Number(tokenId));
-      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xB44d18ea8F44d38b8DBD3B2dB23B14D59aaFa13A/${tokenId.toNumber()}`)
-      alert('i am the event being emitted be happy');
+      setIsMinting(false);
+      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xeBDEb607031B7cD3fC11805e84e0136C8C2375cD/${tokenId.toNumber()}`)
     }
     if (contract) {
       contract.on("MintReceipt", mintReceipt);
@@ -106,12 +107,26 @@ export default function Home() {
 
       : null}
 
-      {!wallet && (pageSelected === "MetaGallery") ?
+      {!wallet && ((pageSelected === "MetaGallery") || (pageSelected === "Collection")) ?
         <div className={`px-4 py-5 my-5 text-center`}>
-          <h1 className="display-5 fw-bold">To Get Started<br />Connect Your Wallet</h1>
+          <h1 className="display-5 fw-bold">
+            <br />
+
+            {pageSelected === "MetaGallery" ? "To Browse Mintable Cards..." : null}
+            {pageSelected === "Collection" ? "To See Your Collection..." : null}
+            <br />
+
+            <span className="purple-text">Connect Your Wallet</span></h1>
+            <br />
+            <br />
+            <br />
+            <br />
+
+
           <div className="col-lg-6 mx-auto">
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
               <CreateWallet setWallet={setWallet} />
+              <br />
               <ConnectWallet setWallet={setWallet} setContract={setContract} />
             </div>
           </div>
@@ -119,7 +134,7 @@ export default function Home() {
       : null}
 
       { selectedCard ?
-        <BigCard selectedCard={selectedCard} setSelectedCard={setSelectedCard} wallet={wallet} contract={contract}/>
+        <BigCard isMinting={isMinting} setIsMinting={setIsMinting} selectedCard={selectedCard} setSelectedCard={setSelectedCard} wallet={wallet} contract={contract}/>
       : null } 
     </div>
   )
