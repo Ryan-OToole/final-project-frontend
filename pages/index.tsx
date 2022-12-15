@@ -27,7 +27,7 @@ export default function Home() {
       console.log('address', sender);
       console.log('tokenId', Number(tokenId));
       setIsMinting(false);
-      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xeBDEb607031B7cD3fC11805e84e0136C8C2375cD/${tokenId.toNumber()}`)
+      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0x005B6566CB2EA51c1DBF64F93bDdd2d7198bc115/${tokenId.toNumber()}`)
     }
     if (contract) {
       contract.on("MintReceipt", mintReceipt);
@@ -68,10 +68,9 @@ export default function Home() {
       cardArray.push(collection[card]);
     }
     return cardArray.map( hash => {
-      return <Card key={hash} setSelectedCard={setSelectedCard} selectedCard={selectedCard} hash={hash} wallet={wallet} />
+      return <Card key={hash} setSelectedCard={setSelectedCard} selectedCard={selectedCard} hash={hash} wallet={wallet}  />
     });
   }
-
   
 
   return (
@@ -131,7 +130,7 @@ export default function Home() {
       : null}
 
       { selectedCard ?
-        <BigCard isMinting={isMinting} setIsMinting={setIsMinting} selectedCard={selectedCard} setSelectedCard={setSelectedCard} wallet={wallet} contract={contract}/>
+        <BigCard isMinting={isMinting} setIsMinting={setIsMinting} selectedCard={selectedCard} setSelectedCard={setSelectedCard} wallet={wallet} contract={contract} pageSelected={pageSelected}/>
       : null } 
     </div>
   )

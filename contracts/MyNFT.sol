@@ -32,6 +32,7 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         uint bodyLength;
         uint dynamicRange;
         uint duration;
+        bool redeemed;
     }
 
     constructor() ERC721("MyToken", "MTK") {
@@ -47,7 +48,8 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         uint256 _tailLength,
         uint256 _bodyLength,
         uint256 _dynamicRange,
-        uint256 _duration
+        uint256 _duration,
+        bool _redeemed
     ) public onlyRole(MINTER_ROLE) {
         uint256 tokenId = _tokenIdCounter.current();
         _safeMint(msg.sender, tokenId);
@@ -59,7 +61,8 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
             tailLength: _tailLength,
             bodyLength: _bodyLength,
             dynamicRange: _dynamicRange,
-            duration: _duration
+            duration: _duration,
+            redeemed: _redeemed
         });
         yourCardsInGameMapping[msg.sender].push(_imageURI);
         console.log(
@@ -106,6 +109,8 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
                 dynamicRange,
                 '},  { "trait_type": "Duration", "value": ',
                 duration,
+                '},  { "trait_type": "Redeemed", "value": ',
+                charAttributes.redeemed,
                 "} ]}"
             )
         );
@@ -115,6 +120,16 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         );
 
         return output;
+    }
+
+    function switchRedeemed(uint256 tokenId) public {
+        CharacterAttributes storage card = nftHolderAttributes[tokenId];
+        card.redeemed = true;
+    }
+
+    function checkRedemptionStatus(uint256 tokenId) public view returns (bool) {
+        CharacterAttributes storage card = nftHolderAttributes[tokenId];
+        return card.redeemed;
     }
 
     // The following functions are overrides required by Solidity.

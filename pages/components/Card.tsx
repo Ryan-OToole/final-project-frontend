@@ -5,14 +5,14 @@ const Card = ({hash, setSelectedCard, selectedCard, wallet}) => {
   let MyNFTFactory;
   let MyNFTContract;  
   
-  const handleMint = async (hash, wallet) => {
-    fetch(`http://localhost:3000/mint/${hash}/${wallet}`)
-      .then(response => response.json())
-      .then(data => console.log(data));
-    // we need to call the backend and send the image hash i.e. card.src
-    // to it then look it up in the dictionary and have the info dynamically sent to mint function to call it with
-    // we also need to send the msg.sender to mint it to the right person 
-  }
+  // const handleMint = async (hash, wallet) => {
+  //   fetch(`http://localhost:3000/mint/${hash}/${wallet}`)
+  //     .then(response => response.json())
+  //     .then(data => console.log(data));
+  //   // we need to call the backend and send the image hash i.e. card.src
+  //   // to it then look it up in the dictionary and have the info dynamically sent to mint function to call it with
+  //   // we also need to send the msg.sender to mint it to the right person 
+  // }
   
   return (
     <div className="col" onClick={() => setSelectedCard(hash)}>

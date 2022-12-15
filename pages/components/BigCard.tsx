@@ -2,13 +2,15 @@ import React, {useEffect, useState, useCallback} from "react";
 import REVERSELOOKUP from '../dictionary_reverse';
 import ROTATION from '../dictionary_rotation';
 
-const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, setIsMinting}) => {
+const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, setIsMinting, pageSelected}) => {
   console.log('selectedCard inside Bigcard', selectedCard);
   console.log('wallet inside Bigcard', wallet);
 
   console.log(REVERSELOOKUP);
   
-  
+  const [redeemed, setRedeemed] = useState<boolean>(false);
+
+  const [collection, setCollection] = useState<string[] | null>(null);
   let MyNFTFactory;
   let MyNFTContract;
 
@@ -16,7 +18,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
   
   const handleMint = async () => {
     setIsMinting(true);
-    const tx = await contract.safeMint(REVERSELOOKUP[selectedCard], selectedCard, 837, 19, 2, 11, 13);
+    const tx = await contract.safeMint(REVERSELOOKUP[selectedCard], selectedCard, 837, 19, 2, 11, 13, false);
     await tx.wait();
     console.log("tx", tx);
     // const tx2 = await contract.nftHolderAttributes[]
@@ -53,6 +55,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
     }
   }, []);
   useEffect(() => {
+
     document.addEventListener("keydown", keyPressed, false);
     document.addEventListener("keydown", keyPressed, false);
 
@@ -70,8 +73,52 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
 
   let randomWalletsLength = Math.floor(Math.random() * 10);
 
+
+
+
+// const checkRedemptionStatus = async () => {
+//   let redeemed: boolean;
+//   if (contract && pageSelected === "Collection") {
+//     redeemed = await contract.checkRedemptionStatus(1);
+//     console.log('redeemed', redeemed);
+//     // setRedeemed(redeemed);
+//     return (
+//       <div>
+//         <li className="attribute-title">Redeemed: </li>
+//         <p className="attribute-value">{redeemed}</p>
+//       </div>
+//     )
+//   }
+//   else {
+//     return (
+//       <div></div>
+//     )
+//   }
+// }
+
+  const redeemCard = async () => {
+    const redeemed = await contract.switchRedeemed(2);
+    await redeemed.wait();
+    const status = await contract.checkRedemptionStatus(2);
+    console.log('status', status);
+    setRedeemed(status);
+  }
+
+  useEffect(() => {
+    const checkRedemptionStatus = async () => {
+      let redeemed: boolean;
+      if (contract && pageSelected === "Collection") {
+        redeemed = await contract.checkRedemptionStatus(2);
+        console.log('redeemed', redeemed);
+        setRedeemed(redeemed);
+      }
+    }
+    checkRedemptionStatus();
+  }, []);
+
   return (
     <div className="big-card-container">
+      <button onClick={redeemCard}>Redeem Me Now</button>
         <div className="big-img-container">
 
             <div className="panel big-card-details">
@@ -90,11 +137,12 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
                   <p className="attribute-value">-{Math.floor(Math.random() * 5) * randomLength} LUFs</p>
                   <li className="attribute-title">Dynamics: </li>
                   <p className="attribute-value">-{Math.floor(Math.random() * 10) * randomLength}db</p>
-
+                  <li className="attribute-title">Redeemed: </li>
+                  <p className="attribute-value">{`${redeemed}`}</p>
                 </ul>
               </div>
               <div className="action-button-positioning">
-                <button className="btn btn-success interior-item action-button mint-button animate" onClick={() => handleMint()}>Mint</button>
+                <button className="btn btn-success interior-item action-button mint-button animate" onClick={() => handleMint()}>(`${pageSelected === "Collection" ? `${redeemed ? "Redeemed" : "Redeem"}` : "Mint"}`)</button>
               </div>
             </div>
 
