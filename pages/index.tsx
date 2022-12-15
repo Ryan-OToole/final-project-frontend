@@ -20,14 +20,17 @@ export default function Home() {
 
 
   useEffect(() => {
-    const mintReceipt = async (address, tokenId) => {
-      console.log('address', address);
-      console.log('tokenId', tokenId);
+    const mintReceipt = async (sender, tokenId) => {
+      console.log('i am the event being emitted be happy');
+      console.log('address', sender);
+      console.log('tokenId', Number(tokenId));
+      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0x4caEb02e28DD170bE1cFb7af535664518BA9eB06/${tokenId.toNumber()}`)
+      alert('i am the event being emitted be happy');
     }
     if (contract) {
       contract.on("MintReceipt", mintReceipt);
     }
-  }, []);
+  }, [contract]);
 
   const mapCards = () => {
     let cardArray: any[] = [];
