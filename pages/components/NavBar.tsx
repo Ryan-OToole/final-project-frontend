@@ -21,9 +21,9 @@ const NavBar = ({pageSelected, setPageSelected, setSelectedCard}) => {
         About
         <div className={`underline ${pageSelected === "About" ? "selected-underline" : null}`}></div>
       </div>
-      <div onClick={() => handleNavigate("Presentation")} className={`nav-button ${pageSelected === "Collection" ? "selected-page" : null}`}>
+      <div onClick={() => handleNavigate("Presentation")} className={`nav-button ${pageSelected === "Presentation" ? "selected-page" : null}`}>
         Presentation
-        <div className={`underline ${pageSelected === "Collection" ? "selected-underline" : null}`}></div>
+        <div className={`underline ${pageSelected === "Presentation" ? "selected-underline" : null}`}></div>
       </div>
       <div onClick={() => handleNavigate("MetaGallery")} className={`nav-button ${pageSelected === "MetaGallery" ? "selected-page" : null}`}>
         MetaGallery

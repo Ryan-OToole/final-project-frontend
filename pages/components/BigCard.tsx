@@ -50,6 +50,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
 
             <div className="panel big-card-details">
               <div className="force-wide">XOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXO</div>
+              <div className="circle"></div>
               <h5 className="interior-item detail-text-header">{REVERSELOOKUP[selectedCard]}</h5>
               <div className="sub-panel">
                 <ul className="card-attributes">
@@ -78,6 +79,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
 
             <div className="panel big-card-actions">
               <div className="force-wide">XOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXO</div>
+              <div className="circle"></div>
               <h5 className="interior-item detail-text-header">Circulating</h5>
               <div className="sub-panel">
                 <ul className="wallet-list">
@@ -98,6 +100,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
               <div className="action-button-positioning">
                 <button className="btn btn-secondary interior-item action-button" onClick={() => alert("This is a stretch goal we are still working on!! Sorry :]")}>Trade</button>
               </div>
+              
             </div>
 
 
@@ -107,6 +110,13 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
               <div className="progress-bar"></div>
             </div>
           : null}
+
+          <div className="spacer5"></div>
+          <div className="spacer5"></div>
+          <div className="spacer5"></div>
+          <div className="nudge-bigger">
+            <div className="circle"></div>
+          </div>
     </div>
     )
   }
