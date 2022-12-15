@@ -24,7 +24,7 @@ export default function Home() {
       console.log('i am the event being emitted be happy');
       console.log('address', sender);
       console.log('tokenId', Number(tokenId));
-      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xeBDEb607031B7cD3fC11805e84e0136C8C2375cD/${tokenId.toNumber()}`)
+      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xB44d18ea8F44d38b8DBD3B2dB23B14D59aaFa13A/${tokenId.toNumber()}`)
       alert('i am the event being emitted be happy');
     }
     if (contract) {
@@ -53,7 +53,6 @@ export default function Home() {
       // transaction failed after await need to debug and figure out why 
       // this logic is not working trying to pull hashes from backend
       const test = await contract.checkForUsersNFTs();
-      await test.wait();
       console.log('test', test);
     }
     else {

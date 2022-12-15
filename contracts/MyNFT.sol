@@ -18,7 +18,9 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
     mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 
     CharacterAttributes[] allCardsInGame;
-    string[] yourCardsInGame;
+    // string[] yourCardsInGame;
+
+    mapping(address => string[]) public yourCardsInGameMapping;
 
     event MintReceipt(address sender, uint256 tokenId);
 
@@ -59,6 +61,7 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
             dynamicRange: _dynamicRange,
             duration: _duration
         });
+        yourCardsInGameMapping[msg.sender].push(_imageURI);
         console.log(
             "Minted NFT w/ tokenId %s and characterIndex %s",
             tokenId,
@@ -124,19 +127,27 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
 
     function checkForUsersNFTs()
         public
+        view
         returns (string[] memory yoCardsInGame)
     {
-        uint256[] memory nftArray = nftHolders[msg.sender];
-        if (nftArray[0] > 0) {
-            for (uint i = 0; i < nftArray.length; i++) {
-                CharacterAttributes memory nft = nftHolderAttributes[
-                    nftArray[i]
-                ];
-                yourCardsInGame.push(nft.imageURI);
-            }
-            return yourCardsInGame;
-        } else {
-            return yourCardsInGame;
-        }
+        return yourCardsInGameMapping[msg.sender];
     }
 }
+
+// function checkForUsersNFTs()
+//     public
+//     returns (string[] memory yoCardsInGame)
+// {
+//     uint256[] memory nftArray = nftHolders[msg.sender];
+//     if (nftArray[0] > 0) {
+//         for (uint i = 0; i < nftArray.length; i++) {
+//             CharacterAttributes memory nft = nftHolderAttributes[
+//                 nftArray[i]
+//             ];
+//             yourCardsInGame.push(nft.imageURI);
+//         }
+//         return yourCardsInGame;
+//     } else {
+//         return yourCardsInGame;
+//     }
+// }
