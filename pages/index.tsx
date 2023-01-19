@@ -27,7 +27,7 @@ export default function Home() {
       console.log('address', sender);
       console.log('tokenId', Number(tokenId));
       setIsMinting(false);
-      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0x740D7f099F79209AAd47d50d3893F887f3203e11/${tokenId.toNumber()}`)
+      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xd28253A4474E8C34C90D278cCD3C2fe3Ec01515C/${tokenId.toNumber()}`)
     }
     if (contract) {
       contract.on("MintReceipt", mintReceipt);

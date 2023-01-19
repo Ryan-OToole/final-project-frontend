@@ -90,19 +90,24 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         string memory dynamicRange = Strings.toString(
             charAttributes.dynamicRange
         );
-        string memory redeemed = convertBoolToString(charAttributes.redeemed);
+        uint256 redeemed = convertBoolToNumber(charAttributes.redeemed);
+        string memory redeemedString = Strings.toString(redeemed);
+        string memory one = Strings.toString(1);
+
         string memory json = Base64.encode(
             abi.encodePacked(
                 '{"name": "',
                 charAttributes.name,
                 " -- NFT #: ",
                 Strings.toString(_tokenId),
-                '", "description": "This is an NFT that lets people play and trade for a Sonic Game!", "redeemed":',
-                redeemed,
-                ',  "image": "ipfs://',
+                '", "description": "This is an NFT that lets people play and trade for a Sonic Game!", "image": "ipfs://',
                 charAttributes.imageURI,
                 '", "attributes": [ { "trait_type": "Percieved Loudness", "value": ',
                 percievedLoudness,
+                '},{ "trait_type": "Redeemed", "value": ',
+                redeemedString,
+                ', "max_value":',
+                one,
                 '}, { "trait_type": "Tail Length", "value": ',
                 tailLength,
                 '}, { "trait_type": "Body Length", "value": ',
@@ -140,13 +145,13 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         return card.redeemed;
     }
 
-    function convertBoolToString(
+    function convertBoolToNumber(
         bool redeemed
-    ) public pure returns (string memory redeemedString) {
+    ) public pure returns (uint256 redeemedBinary) {
         if (redeemed == true) {
-            return "true";
+            return 1;
         } else {
-            return "false";
+            return 0;
         }
     }
 
