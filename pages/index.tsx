@@ -27,7 +27,7 @@ export default function Home() {
       console.log('address', sender);
       console.log('tokenId', Number(tokenId));
       setIsMinting(false);
-      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xeBDEb607031B7cD3fC11805e84e0136C8C2375cD/${tokenId.toNumber()}`)
+      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0x775C6B42439adaA24b1fb67FC82B1d24B5DE66Ba/${tokenId.toNumber()}`)
     }
     if (contract) {
       contract.on("MintReceipt", mintReceipt);
@@ -45,7 +45,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-
     checkForUsersNFTs();
   }, [pageSelected])
 
@@ -61,7 +60,6 @@ export default function Home() {
     }
   }
 
-
   const mapCollection = () => {
     let cardArray: any[] = [];
     for (let card in collection) {
@@ -71,8 +69,6 @@ export default function Home() {
       return <Card key={hash} setSelectedCard={setSelectedCard} selectedCard={selectedCard} hash={hash} wallet={wallet} />
     });
   }
-
-  
 
   return (
     <div>

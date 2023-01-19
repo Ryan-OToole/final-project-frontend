@@ -11,7 +11,6 @@ declare global {
 const ConnectWallet = (props: any) => {
     let signer;
     const connect = async () => {
-        console.log('hi')
         try {
             const { ethereum } = window;
             if (!ethereum) {
@@ -25,18 +24,15 @@ const ConnectWallet = (props: any) => {
                   alert("You are not connected to the Goerli Test Network!");
                 }
                 const accounts = await ethereum.request({ method: "eth_requestAccounts"});
-                console.log("accounts", accounts);
                 const provider = new ethers.providers.Web3Provider(ethereum);
                 const signer = provider.getSigner();
                 
                 // contract instance should be stored in backend and fetched with API call 
-                const myNFTFactory = new ethers.Contract("0xB44d18ea8F44d38b8DBD3B2dB23B14D59aaFa13A", myNFTJson.abi, signer);
+                const myNFTFactory = new ethers.Contract("0x775C6B42439adaA24b1fb67FC82B1d24B5DE66Ba", myNFTJson.abi, signer);
                 props.setContract(myNFTFactory);
                 props.setWallet(signer);
                 // props.pullWalletUp(wallet);
-                console.log('hi again')
             }   
-    
         }
         catch (e) {
             console.log('error', e);

@@ -8,7 +8,6 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
 
   console.log(REVERSELOOKUP);
   
-  
   let MyNFTFactory;
   let MyNFTContract;
 
@@ -55,7 +54,6 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
   useEffect(() => {
     document.addEventListener("keydown", keyPressed, false);
     document.addEventListener("keydown", keyPressed, false);
-
 
     return () => {
       document.removeEventListener("keydown", keyPressed, false);
