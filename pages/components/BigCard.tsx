@@ -15,7 +15,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
   
   const handleMint = async () => {
     setIsMinting(true);
-    const tx = await contract.safeMint(REVERSELOOKUP[selectedCard], selectedCard, 837, 19, 2, 11, 13);
+    const tx = await contract.safeMint(REVERSELOOKUP[selectedCard], selectedCard, 837, 19, 2, 11, 13, false);
     await tx.wait();
     console.log("tx", tx);
     // const tx2 = await contract.nftHolderAttributes[]

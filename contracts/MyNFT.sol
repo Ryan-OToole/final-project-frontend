@@ -32,6 +32,7 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         uint bodyLength;
         uint dynamicRange;
         uint duration;
+        bool redeemed;
     }
 
     constructor() ERC721("MyToken", "MTK") {
@@ -47,7 +48,8 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         uint256 _tailLength,
         uint256 _bodyLength,
         uint256 _dynamicRange,
-        uint256 _duration
+        uint256 _duration,
+        bool _redeemed
     ) public onlyRole(MINTER_ROLE) {
         uint256 tokenId = _tokenIdCounter.current();
         _safeMint(msg.sender, tokenId);
@@ -59,7 +61,8 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
             tailLength: _tailLength,
             bodyLength: _bodyLength,
             dynamicRange: _dynamicRange,
-            duration: _duration
+            duration: _duration,
+            redeemed: _redeemed
         });
         yourCardsInGameMapping[msg.sender].push(_imageURI);
         console.log(
@@ -87,14 +90,16 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         string memory dynamicRange = Strings.toString(
             charAttributes.dynamicRange
         );
-
+        string memory redeemed = convertBoolToString(charAttributes.redeemed);
         string memory json = Base64.encode(
             abi.encodePacked(
                 '{"name": "',
                 charAttributes.name,
                 " -- NFT #: ",
                 Strings.toString(_tokenId),
-                '", "description": "This is an NFT that lets people play and trade for a Sonic Game!", "image": "ipfs://',
+                '", "description": "This is an NFT that lets people play and trade for a Sonic Game!", "redeemed":',
+                redeemed,
+                ',  "image": "ipfs://',
                 charAttributes.imageURI,
                 '", "attributes": [ { "trait_type": "Percieved Loudness", "value": ',
                 percievedLoudness,
@@ -117,20 +122,40 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         return output;
     }
 
-    // The following functions are overrides required by Solidity.
-
-    function supportsInterface(
-        bytes4 interfaceId
-    ) public view override(ERC721, AccessControl) returns (bool) {
-        return super.supportsInterface(interfaceId);
-    }
-
     function checkForUsersNFTs()
         public
         view
         returns (string[] memory yoCardsInGame)
     {
         return yourCardsInGameMapping[msg.sender];
+    }
+
+    function switchRedeemed(uint256 tokenId) public {
+        CharacterAttributes storage card = nftHolderAttributes[tokenId];
+        card.redeemed = true;
+    }
+
+    function checkRedemptionStatus(uint256 tokenId) public view returns (bool) {
+        CharacterAttributes memory card = nftHolderAttributes[tokenId];
+        return card.redeemed;
+    }
+
+    function convertBoolToString(
+        bool redeemed
+    ) public pure returns (string memory redeemedString) {
+        if (redeemed == true) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
+    // The following functions are overrides required by Solidity.
+
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view override(ERC721, AccessControl) returns (bool) {
+        return super.supportsInterface(interfaceId);
     }
 }
 
