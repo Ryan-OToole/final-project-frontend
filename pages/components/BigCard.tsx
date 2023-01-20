@@ -3,21 +3,21 @@ import REVERSELOOKUP from '../dictionary_reverse';
 import ROTATION from '../dictionary_rotation';
 
 const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, setIsMinting}) => {
-  console.log('selectedCard inside Bigcard', selectedCard);
-  console.log('wallet inside Bigcard', wallet);
+  // console.log('selectedCard inside Bigcard', selectedCard);
+  // console.log('wallet inside Bigcard', wallet);
 
-  console.log(REVERSELOOKUP);
+  // console.log(REVERSELOOKUP);
   
   let MyNFTFactory;
   let MyNFTContract;
 
-  console.log(REVERSELOOKUP[selectedCard]);
+  // console.log(REVERSELOOKUP[selectedCard]);
   
   const handleMint = async () => {
     setIsMinting(true);
-    const tx = await contract.safeMint(REVERSELOOKUP[selectedCard], selectedCard, 837, 19, 2, 11, 13, false);
+    const tx = await contract.safeMint(REVERSELOOKUP[selectedCard], selectedCard, 837, 19, 2, 11, 13, 0);
     await tx.wait();
-    console.log("tx", tx);
+    // console.log("tx", tx);
     // const tx2 = await contract.nftHolderAttributes[]
   }
 
@@ -61,6 +61,27 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
     };
   }, []);
 
+  useEffect(() => {
+    let redeemed: number;
+    const checkRemdeptionStatus = async () => {
+      if (contract) {
+        redeemed = await contract.checkRedemptionStatus(2);
+        console.log('redeemed', Number(redeemed));
+      }
+    }
+    checkRemdeptionStatus();
+  }, []);
+
+  const redeemCard = async () => {
+    const statusb4 = await contract.checkRedemptionStatus(2);
+    console.log('statusb4', Number(statusb4));
+    const redeemed = await contract.switchRedeemed(2);
+    await redeemed.wait();
+    const status = await contract.checkRedemptionStatus(2);
+    console.log('statusAfter', Number(status));
+    // setRedeemed(status);
+  }
+
   let randomLength = Math.floor(Math.random() * 3);
   let bodyLength = Math.floor(Math.floor(Math.random() * 55) * randomLength / 10) * 10 + 10;
   let tailLength = Math.floor(Math.floor(Math.random() * 70) * randomLength / 10) * 10 + 10;
@@ -70,6 +91,7 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
 
   return (
     <div className="big-card-container">
+      <button onClick={redeemCard}>REDEEM CARD</button>
         <div className="big-img-container">
 
             <div className="panel big-card-details">

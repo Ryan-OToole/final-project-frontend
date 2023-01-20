@@ -27,12 +27,12 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
     struct CharacterAttributes {
         string name;
         string imageURI;
-        uint percievedLoudness;
-        uint tailLength;
-        uint bodyLength;
-        uint dynamicRange;
-        uint duration;
-        bool redeemed;
+        uint256 percievedLoudness;
+        uint256 tailLength;
+        uint256 bodyLength;
+        uint256 dynamicRange;
+        uint256 duration;
+        uint256 redeemed;
     }
 
     constructor() ERC721("MyToken", "MTK") {
@@ -49,7 +49,7 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         uint256 _bodyLength,
         uint256 _dynamicRange,
         uint256 _duration,
-        bool _redeemed
+        uint256 _redeemed
     ) public onlyRole(MINTER_ROLE) {
         uint256 tokenId = _tokenIdCounter.current();
         _safeMint(msg.sender, tokenId);
@@ -90,8 +90,7 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
         string memory dynamicRange = Strings.toString(
             charAttributes.dynamicRange
         );
-        uint256 redeemed = convertBoolToNumber(charAttributes.redeemed);
-        string memory redeemedString = Strings.toString(redeemed);
+        string memory redeemed = Strings.toString(charAttributes.redeemed);
         string memory one = Strings.toString(1);
 
         string memory json = Base64.encode(
@@ -105,7 +104,7 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
                 '", "attributes": [ { "trait_type": "Percieved Loudness", "value": ',
                 percievedLoudness,
                 '},{ "trait_type": "Redeemed", "value": ',
-                redeemedString,
+                redeemed,
                 ', "max_value":',
                 one,
                 '}, { "trait_type": "Tail Length", "value": ',
@@ -137,10 +136,12 @@ contract MyNFT is ERC721, ERC721Burnable, AccessControl {
 
     function switchRedeemed(uint256 tokenId) public {
         CharacterAttributes storage card = nftHolderAttributes[tokenId];
-        card.redeemed = true;
+        card.redeemed = 1;
     }
 
-    function checkRedemptionStatus(uint256 tokenId) public view returns (bool) {
+    function checkRedemptionStatus(
+        uint256 tokenId
+    ) public view returns (uint256) {
         CharacterAttributes memory card = nftHolderAttributes[tokenId];
         return card.redeemed;
     }
