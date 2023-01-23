@@ -49,15 +49,15 @@ const About = () => {
       <div className="fwbox img-row">
         <Image className="avatar ryan" alt="pee" src={AvRyan} />
           <div className="quote ryan-quote">
-              "WAGMI to the moon!"
+              WAGMI to the moon!
           </div>
         <Image className="avatar elliot" alt="pee" src={AvElliot} />
           <div className="quote elliot-quote">
-              "Sup, nerds!"
+              Sup, nerds!
           </div>
         <Image className="avatar albert" alt="pee" src={AvAlbert} />
           <div className="quote albert-quote">
-              "I'm Albert's quote!"
+              I'm Albert's quote!
           </div>
       </div>
       <div className="fwbox img-row">
