@@ -12,22 +12,26 @@ import { MyNFT } from "../typechain-types";
 export default function Home() {  
   const [pageSelected, setPageSelected] = useState("MetaGallery");
   const [selectedCard, setSelectedCard] = useState("");
-
   const [wallet, setWallet] = useState();
-  const [walletAddress, setWalletAddress] = useState("");
-  const [balance, setBalance] = useState(0);
   const [contract, setContract] = useState<MyNFT | null>(null)
   const [isMinting, setIsMinting] = useState(false);
   const [collection, setCollection] = useState<string[] | null>(null);
+  // const [walletAddress, setWalletAddress] = useState("");
+  // const [balance, setBalance] = useState(0);
 
 
   useEffect(() => {
-    const mintReceipt = async (sender, tokenId) => {
-      console.log('i am the event being emitted be happy');
-      console.log('address', sender);
-      console.log('tokenId', Number(tokenId));
+    const mintReceipt = async (sender, tokenId, imageURI) => {
+      // i need to make a mapping of imageURI to tokenID
+      // when someone clicks on big card from their collection
+      // i reference the mapping with imageURI grab then tokenId
+      // this will allow me to call the redeem function with
+      // the correct tokenId
+      console.log('event emitted address', sender);
+      console.log('event emitted tokenId', Number(tokenId));
+      console.log('event emitted imageURI', imageURI)
       setIsMinting(false);
-      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0x005B6566CB2EA51c1DBF64F93bDdd2d7198bc115/${tokenId.toNumber()}`)
+      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0x0c88b48076ca3871F7aE3748fE543aFbEec83F98/${tokenId.toNumber()}`)
     }
     if (contract) {
       contract.on("MintReceipt", mintReceipt);

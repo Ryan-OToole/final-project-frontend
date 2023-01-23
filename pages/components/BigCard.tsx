@@ -3,10 +3,10 @@ import REVERSELOOKUP from '../dictionary_reverse';
 import ROTATION from '../dictionary_rotation';
 
 const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, setIsMinting, pageSelected}) => {
-  console.log('selectedCard inside Bigcard', selectedCard);
-  console.log('wallet inside Bigcard', wallet);
+  // console.log('selectedCard inside Bigcard', selectedCard);
+  // console.log('wallet inside Bigcard', wallet);
 
-  console.log(REVERSELOOKUP);
+  // console.log(REVERSELOOKUP);
   
   const [redeemed, setRedeemed] = useState<boolean>(false);
 
@@ -14,13 +14,13 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
   let MyNFTFactory;
   let MyNFTContract;
 
-  console.log(REVERSELOOKUP[selectedCard]);
+  // console.log(REVERSELOOKUP[selectedCard]);
   
   const handleMint = async () => {
     setIsMinting(true);
-    const tx = await contract.safeMint(REVERSELOOKUP[selectedCard], selectedCard, 837, 19, 2, 11, 13, false);
+    const tx = await contract.safeMint(REVERSELOOKUP[selectedCard], selectedCard, 837, 19, 2, 11, 13, 0);
     await tx.wait();
-    console.log("tx", tx);
+    // console.log("tx", tx);
     // const tx2 = await contract.nftHolderAttributes[]
   }
 
@@ -73,44 +73,29 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
 
   let randomWalletsLength = Math.floor(Math.random() * 10);
 
-
-
-
-// const checkRedemptionStatus = async () => {
-//   let redeemed: boolean;
-//   if (contract && pageSelected === "Collection") {
-//     redeemed = await contract.checkRedemptionStatus(1);
-//     console.log('redeemed', redeemed);
-//     // setRedeemed(redeemed);
-//     return (
-//       <div>
-//         <li className="attribute-title">Redeemed: </li>
-//         <p className="attribute-value">{redeemed}</p>
-//       </div>
-//     )
-//   }
-//   else {
-//     return (
-//       <div></div>
-//     )
-//   }
-// }
-
   const redeemCard = async () => {
     const redeemed = await contract.switchRedeemed(2);
     await redeemed.wait();
     const status = await contract.checkRedemptionStatus(2);
-    console.log('status', status);
-    setRedeemed(status);
+    if (Number(status) === 1) {
+      setRedeemed(true);
+    }
+    if (Number(status) === 0) { 
+      setRedeemed(false);
+    }
   }
 
   useEffect(() => {
     const checkRedemptionStatus = async () => {
-      let redeemed: boolean;
+      let redeemed: number;
       if (contract && pageSelected === "Collection") {
-        redeemed = await contract.checkRedemptionStatus(2);
-        console.log('redeemed', redeemed);
-        setRedeemed(redeemed);
+        const status = await contract.checkRedemptionStatus(2);
+        if (Number(status) === 1) {
+          setRedeemed(true);
+        }
+        if (Number(status) === 0) { 
+          setRedeemed(false);
+        }
       }
     }
     checkRedemptionStatus();
