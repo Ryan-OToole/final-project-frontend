@@ -83,34 +83,36 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
       if (Number(status) === 1) {
         setRedeemed(true);
       }
-      if (Number(status) === 0) { 
+      if (Number(status) === 0) {
         setRedeemed(false);
       }
     }
   }
 
   useEffect(() => {
+    // need to add logic to make the redeemed be empty by default then
+    // wait till checkRedemptionStatus finishes to populate status on frontend.
     const checkRedemptionStatus = async () => {
       const usersTokenIDs = await contract.checkForUsersTokenIDs();
-      console.log('usersTokenIDs', usersTokenIDs);
-      let ImageURIsToTokenIDs = {};
-      for (let tokenID of usersTokenIDs) {
-        const mapping = await contract.nftHolderAttributes(Number(tokenID));
-        console.log('mapping', mapping[1]);
-        ImageURIsToTokenIDs[mapping[1]] = tokenID;
-      }
-      let tokenIDToRedeem: number = Number(ImageURIsToTokenIDs[selectedCard]);
-      setSelectedTokenID(tokenIDToRedeem);
-      console.log('tokenIDToRedeem', tokenIDToRedeem);
-      let redeemed: number;
-      if (contract && pageSelected === "Collection") {
-        // need to unhardcode 
-        const status = await contract.checkRedemptionStatus(tokenIDToRedeem);
-        if (Number(status) === 1) {
-          setRedeemed(true);
+      if (usersTokenIDs) {
+        let ImageURIsToTokenIDs = {};
+        for (let tokenID of usersTokenIDs) {
+          const mapping = await contract.nftHolderAttributes(Number(tokenID));
+          console.log('mapping', mapping[1]);
+          ImageURIsToTokenIDs[mapping[1]] = tokenID;
         }
-        if (Number(status) === 0) { 
-          setRedeemed(false);
+        let tokenIDToRedeem: number = Number(ImageURIsToTokenIDs[selectedCard]);
+        setSelectedTokenID(tokenIDToRedeem);
+        console.log('tokenIDToRedeem', tokenIDToRedeem);
+        if (contract && pageSelected === "Collection") {
+          // need to unhardcode 
+          const status = await contract.checkRedemptionStatus(tokenIDToRedeem);
+          if (Number(status) === 1) {
+            setRedeemed(true);
+          }
+          if (Number(status) === 0) { 
+            setRedeemed(false);
+          }
         }
       }
     }
