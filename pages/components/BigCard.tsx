@@ -1,3 +1,4 @@
+import { MissingStaticPage } from "next/dist/shared/lib/utils";
 import React, {useEffect, useState, useCallback} from "react";
 import REVERSELOOKUP from '../dictionary_reverse';
 import ROTATION from '../dictionary_rotation';
@@ -74,9 +75,19 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
   let randomWalletsLength = Math.floor(Math.random() * 10);
 
   const redeemCard = async () => {
-    const redeemed = await contract.switchRedeemed(2);
+    const usersTokenIDs = await contract.checkForUsersTokenIDs();
+        console.log('usersTokenIDs', usersTokenIDs);
+    let ImageURIsToTokenIDs = {};
+    for (let tokenID of usersTokenIDs) {
+      const mapping = await contract.nftHolderAttributes(Number(tokenID));
+      console.log('mapping', mapping[1]);
+      ImageURIsToTokenIDs[mapping[1]] = tokenID;
+    }
+    let tokenIDToRedeem: number = Number(ImageURIsToTokenIDs[selectedCard]);
+    console.log('tokenIDToRedeem', tokenIDToRedeem);
+    const redeemed = await contract.switchRedeemed(tokenIDToRedeem);
     await redeemed.wait();
-    const status = await contract.checkRedemptionStatus(2);
+    const status = await contract.checkRedemptionStatus(tokenIDToRedeem);
     if (Number(status) === 1) {
       setRedeemed(true);
     }
@@ -89,7 +100,8 @@ const BigCard = ({selectedCard, setSelectedCard, wallet, contract, isMinting, se
     const checkRedemptionStatus = async () => {
       let redeemed: number;
       if (contract && pageSelected === "Collection") {
-        const status = await contract.checkRedemptionStatus(2);
+        // need to unhardcode 
+        const status = await contract.checkRedemptionStatus(4);
         if (Number(status) === 1) {
           setRedeemed(true);
         }
