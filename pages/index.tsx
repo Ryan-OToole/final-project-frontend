@@ -27,11 +27,15 @@ export default function Home() {
       // i reference the mapping with imageURI grab then tokenId
       // this will allow me to call the redeem function with
       // the correct tokenId
+
+      // since frontend doesnt have persistence I need to make two 
+      // mapping on Solidity side to go
+      console.log('wallet', wallet);
       console.log('event emitted address', sender);
       console.log('event emitted tokenId', Number(tokenId));
       console.log('event emitted imageURI', imageURI)
       setIsMinting(false);
-      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0xfDa744Aed945Cd4c9F9B9aD1826Fa3d9fF8F7960/${tokenId.toNumber()}`)
+      alert(`Hey there! You've just minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on Opensea. Here's the link: https://testnets.opensea.io/assets/goerli/0x47FA2BA44BE29D9f99AdB826094F544649c8d607/${tokenId.toNumber()}`)
     }
     if (contract) {
       contract.on("MintReceipt", mintReceipt);
@@ -49,21 +53,21 @@ export default function Home() {
   }
 
   useEffect(() => {
+    const checkForUsersNFTs = async () => {
+      console.log('contract', contract);
+      if (contract) {
+        const ipfsHashArray = await contract.checkForUsersNFTs();
+        setCollection(ipfsHashArray);
+        console.log('ipfsHashArray', ipfsHashArray);
+      }
+      else {
+        alert('Please connect to Metamask to see your collection');
+      }
+    }
 
     checkForUsersNFTs();
   }, [pageSelected])
 
-  const checkForUsersNFTs = async () => {
-    console.log('contract', contract);
-    if (contract) {
-      const ipfsHashArray = await contract.checkForUsersNFTs();
-      setCollection(ipfsHashArray);
-      console.log('ipfsHashArray', ipfsHashArray);
-    }
-    else {
-      alert('Please connect to Metamask to see your collection');
-    }
-  }
 
 
   const mapCollection = () => {

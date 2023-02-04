@@ -12,13 +12,19 @@ contract MyNFT is ERC721, ERC721Burnable {
 
     Counters.Counter private _tokenIdCounter;
 
-    mapping(address => uint256[]) public nftHolders;
     mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 
-    CharacterAttributes[] allCardsInGame;
-    // string[] yourCardsInGame;
+    // token IDs that belong to each address
+    mapping(address => uint256[]) public nftHolders;
 
+    // so I need to take the above tokenIDs then look them up with the
+    // nftHolderAttributes mapping: nftHolderAttributes[tokenId].imageURI
+    // should give me the image.
+
+    // image URIs that belong to each address
     mapping(address => string[]) public yourCardsInGameMapping;
+
+    CharacterAttributes[] allCardsInGame;
 
     event MintReceipt(address sender, uint256 tokenId, string imageURI);
 
@@ -129,6 +135,10 @@ contract MyNFT is ERC721, ERC721Burnable {
         returns (string[] memory yoCardsInGame)
     {
         return yourCardsInGameMapping[msg.sender];
+    }
+
+    function checkForUsersTokenIDs() public view returns (uint256[] memory) {
+        return nftHolders[msg.sender];
     }
 
     function switchRedeemed(uint256 tokenId) public {
